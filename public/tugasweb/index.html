@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="./src/input.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Kasirku</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              montserrat: ['Montserrat', 'sans-serif'],
+            },
+            colors: {
+              custom: {
+                orange: '#FDE3CA',
+                green: '#D6ECD2',
+                blue: '#DEE8F2',
+                pink: '#F3C4CE',
+                purple: '#EDCAE8',
+                mint: '#D5F9DD',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer components {
+        .layout_custom {
+          @apply max-w-6xl mx-auto w-full px-12;
+        }
+        .border_buffer {
+          @apply border-2 border-black;
+        }
+        .border_buffer_y {
+          @apply border-y-2 border-black;
+        }
+        .border_buffer_x {
+          @apply border-x-2 border-black;
+        }
+        .btn-primary {
+          @apply bg-black text-white border_buffer px-4 py-2 rounded-full font-semibold hover:bg-gray-200 hover:text-black transition-colors;
+        }
+        .card-base {
+          @apply p-6 rounded-lg shadow-md border_buffer;
+        }
+        .section-title {
+          @apply text-3xl font-bold mb-8;
+        }
+        .link-hover {
+          @apply hover:text-green-700 text-gray-900;
+        }
+        .testimonial-card {
+          @apply bg-custom-orange p-8 rounded-lg shadow-md border_buffer text-left min-h-[300px] flex flex-col justify-between;
+        }
+        .feature-section {
+          @apply flex items-center gap-8 bg-white rounded-lg;
+        }
+
+        .feature-image-container {
+          @apply border_buffer_x;
+        }
+
+        .feature-content {
+          @apply flex flex-col justify-center space-y-6;
+        }
+
+        .feature-list {
+          @apply space-y-4 mt-4;
+        }
+
+        .feature-item {
+          @apply flex items-center gap-3;
+        }
+
+        .feature-icon {
+          @apply p-2 rounded-full flex items-center justify-center;
+        }
+
+        .check-icon {
+          @apply h-6 w-6 stroke-2;
+        }
+
+        .business-section {
+          @apply flex items-center justify-between gap-8 bg-white rounded-lg;
+        }
+
+        .business-content {
+          @apply flex flex-col space-y-8 w-1/2;
+        }
+
+        .business-list {
+          @apply space-y-6;
+        }
+
+        .business-link {
+          @apply text-lg font-bold text-black hover:underline hover:text-green-700 transition-colors duration-300 inline-flex items-center gap-2;
+        }
+
+        .business-image-container {
+          @apply border_buffer_x flex items-center justify-center bg-custom-green w-1/2;
+        }
+
+        .testimonial-section {
+          @apply grid gap-8 md:grid-cols-3;
+        }
+
+        .testimonial-card {
+          @apply bg-custom-orange p-8 rounded-lg shadow-md border_buffer 
+                 text-left min-h-[300px] flex flex-col justify-between
+                 hover:shadow-lg transition-shadow duration-300;
+        }
+
+        .testimonial-icon {
+          @apply h-8 w-8 text-pink-500 mb-6;
+        }
+
+        .testimonial-text {
+          @apply text-xl text-black mb-6 font-semibold leading-relaxed;
+        }
+
+        .profile-container {
+          @apply flex items-center text-left;
+        }
+
+        .profile-image {
+          @apply w-16 h-16 rounded-full mr-4 object-cover border-2 border-gray-200;
+        }
+
+        .profile-info {
+          @apply space-y-2;
+        }
+
+        .profile-divider {
+          @apply border-t-2 border-gray-300 my-2;
+        }
+
+        .faq-section {
+          @apply bg-custom-pink py-16;
+        }
+
+        .faq-container {
+          @apply max-w-3xl mx-auto px-6;
+        }
+
+        .faq-item {
+          @apply border-b border-black transition-all duration-300;
+        }
+
+        .faq-button {
+          @apply flex justify-between items-center w-full py-6
+                 text-left text-black font-semibold
+                 hover:text-green-700 transition-colors duration-300;
+        }
+
+        .faq-content {
+          @apply p-4 bg-white/80 rounded-lg mb-4 hidden;
+        }
+
+        .faq-content.active {
+          @apply block;
+        }
+
+        .faq-icon {
+          @apply transition-transform duration-300;
+        }
+
+        .faq-icon.active {
+          @apply rotate-180;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-montserrat bg-white">
+    <!-- Navbar -->
+    <header
+      class="bg-green-100 py-8 flex justify-center items-center font-montserrat sticky top-0 z-50 border_buffer_bottom border_buffer_y"
+    >
+      <div class="layout_custom">
+        <nav
+          class="space-x-6 px-4 py-2 bg-white border_buffer rounded-full text-gray-700 font-semibold flex items-center"
+        >
+          <span class="text-wrap px-4 py-2 bg-white text-black font-bold"
+            >KASIRKU</span
+          >
+
+          <!-- Center container -->
+          <div class="flex-1 flex items-center justify-center space-x-6">
+            <a href="#" class="link-hover">About</a>
+            <a href="#" class="link-hover">Pricing</a>
+            <a href="#" class="link-hover">Hardware</a>
+            <a href="#" class="link-hover">Services</a>
+            <a href="#" class="link-hover">Business Solution</a>
+          </div>
+          <a href="#" class="link-hover">Contact</a>
+          <button class="btn-primary">Login</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section
+      class="min-h-screen flex items-center justify-between bg-white rounded-lg"
+    >
+      <div class="layout_custom">
+        <div class="flex flex-col">
+          <div class="flex items-start gap-8">
+            <div>
+              <h1
+                class="font-montserrat w-full text-left text-5xl font-bold text-black leading-tight mb-12"
+              >
+                Solusi Mudah untuk Memulai Bisnis Baru Anda
+              </h1>
+              <button
+                class="text-base font-semibold text-black bg-green-100 p-4 w-2/3 rounded-full border-black border-2"
+              >
+                Mulai Sekarang
+              </button>
+            </div>
+
+            <img
+              src="dist/img/foto1.png"
+              alt="Hero Image"
+              class="rounded-lg w-85 h-65 object-cover"
+            />
+          </div>
+          <div class="container flex flex-col items-start">
+            <!-- Title Section -->
+
+            <p class="text-black font-semibold text-lg mb-2 ml-4">
+              Partner With:
+            </p>
+
+            <!--clients-->
+            <div class="w-full">
+              <div
+                class="flex items-center justify-center p-4 rounded-xl border-2 border-black w-full space-x-6"
+              >
+                <a
+                  href="#"
+                  class="max-w-[120px] p-2 rounded-lg bg-transparent grayscale opacity-60 transition duration-500 hover:grayscale-0 hover:opacity-100"
+                >
+                  <img
+                    src="dist/img/subway.svg"
+                    alt="Spotify"
+                    class="w-full h-full object-cover rounded-lg"
+                  />
+                </a>
+                <a
+                  href="#"
+                  class="max-w-[120px] p-2 rounded-lg bg-transparent grayscale opacity-60 transition duration-500 hover:grayscale-0 hover:opacity-100"
+                >
+                  <img
+                    src="dist/img/subway.svg"
+                    alt="Google"
+                    class="w-full h-full object-cover rounded-lg"
+                  />
+                </a>
+                <a
+                  href="#"
+                  class="max-w-[120px] p-2 rounded-lg opacity-60 transition duration-500 hover:grayscale-0 hover:opacity-100"
+                >
+                  <img
+                    src="dist/img/subway.svg"
+                    alt="Html"
+                    class="w-full h-full object-cover rounded-lg"
+                  />
+                </a>
+                <a
+                  href="#"
+                  class="max-w-[120px] p-2 rounded-lg bg-transparent grayscale opacity-60 transition duration-500 hover:grayscale-0 hover:opacity-100"
+                >
+                  <img
+                    src="dist/img/subway.svg"
+                    alt="Redbull"
+                    class="w-full h-full object-cover rounded-lg"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Hero Image -->
+      </div>
+    </section>
+
+    <!-- Step 2 -->
+    <section class="border_buffer_y">
+      <div class="layout_custom">
+        <div class="feature-section">
+          <!-- Image Section -->
+          <div class="feature-image-container">
+            <img
+              src="dist/img/foto2.png"
+              alt="Kasirku Image"
+              class="bg-custom-green w-full"
+            />
+          </div>
+
+          <!-- Content Section -->
+          <div class="feature-content">
+            <h2 class="text-4xl font-bold max-w-md">Mulai dengan Kasirku</h2>
+
+            <p class="text-base font-semibold max-w-xl">
+              Mencatat penjualan di toko, delivery order, dan penjualan online
+              dengan fitur yang lengkap, nyaman, dan fleksibel.
+            </p>
+
+            <!-- Feature List -->
+            <ul class="feature-list">
+              <li class="feature-item">
+                <div class="feature-icon bg-yellow-100">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="check-icon text-yellow-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <span class="text-black font-semibold max-w-sm">
+                  Didesain untuk mengembangkan usaha Anda
+                </span>
+              </li>
+              <li class="feature-item">
+                <div class="feature-icon bg-purple-100">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="check-icon text-purple-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <span class="text-black font-semibold max-w-sm">
+                  Tetap melayani yang terbaik setelah penjualan
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3 -->
+    <section class="border_buffer_top">
+      <div class="layout_custom py-8">
+        <h2 class="text-3xl font-bold mb-8">What We Offer?</h2>
+
+        <!-- Carousel Container -->
+        <div class="relative w-full">
+          <!-- Carousel Wrapper -->
+          <div class="overflow-hidden w-full">
+            <div
+              class="flex gap-6 transition-transform duration-500 w-full"
+              id="carousel-container"
+            >
+              <!-- Card 1: POS -->
+              <div
+                class="min-w-[calc(33.333%-1rem)] bg-[#F3C4CE] p-6 rounded-lg shadow-md border-2 border-black"
+                id="card1"
+              >
+                <img
+                  src="dist/img/cardPOS.png"
+                  alt="POS System"
+                  class="w-full h-40 object-cover rounded-md mb-4"
+                />
+                <h3 class="text-xl font-semibold mb-2">Point Of Sale (POS)</h3>
+                <p class="text-black mb-4">
+                  Kami membantu Anda dengan aplikasi kasir untuk dapat mengelola
+                  transaksi penjualan bisnis Anda
+                </p>
+                <a
+                  href="#"
+                  class="text-[#1E1E1E] rounded-full border-2 border-black font-medium hover:underline inline-flex items-center"
+                >
+                  Learn More <span class="ml-2">→</span>
+                </a>
+              </div>
+
+              <!-- Card 2: Payment -->
+              <div
+                class="min-w-[calc(33.333%-1rem)] bg-[#EDCAE8] p-6 rounded-lg shadow-lg border-2 border-black"
+                id="card2"
+              >
+                <img
+                  src="dist/img/payment.gif"
+                  alt="Payment System"
+                  class="w-full h-40 object-cover rounded-md mb-2"
+                />
+                <h3 class="text-xl font-semibold mb-2">Payment</h3>
+                <p class="text-black mb-4">
+                  Kami membantu Anda untuk memudahkan menerima pembayaran
+                  digital dengan pilihan metode pembayaran yang variatif
+                </p>
+                <a
+                  href="#"
+                  class="text-[#1E1E1E] font-medium hover:underline inline-flex items-center"
+                >
+                  Learn More <span class="ml-2">→</span>
+                </a>
+              </div>
+
+              <!-- Card 3: Order -->
+              <div
+                class="min-w-[calc(33.333%-1rem)] bg-[#D5F9DD] p-6 rounded-lg shadow-md border-2 border-black"
+                id="card3"
+              >
+                <img
+                  src="dist/img/order.jpeg"
+                  alt="Order System"
+                  class="w-full h-40 object-cover rounded-md mb-2"
+                />
+                <h3 class="text-xl font-semibold mb-2">Order</h3>
+                <p class="text-black mb-4">
+                  Kami membantu Anda mengelola pesanan lebih efisien dan
+                  fleksibel dalam bisnis Anda
+                </p>
+                <a
+                  href="#"
+                  class="text-[#1E1E1E] font-medium hover:underline inline-flex items-center"
+                >
+                  Learn More <span class="ml-2">→</span>
+                </a>
+              </div>
+
+              <!-- Card 4: Analytics -->
+              <div
+                class="min-w-[calc(33.333%-1rem)] bg-[#FFE4B5] p-6 rounded-lg shadow-md border-2 border-black"
+                id="card4"
+              >
+                <img
+                  src="dist/img/analytics.jpeg"
+                  alt="Analytics System"
+                  class="w-full h-40 object-cover rounded-md mb-2"
+                />
+                <h3 class="text-xl font-semibold mb-2">Analytics</h3>
+                <p class="text-black mb-4">
+                  Pantau performa bisnis Anda dengan analisis data yang
+                  komprehensif dan mudah dipahami
+                </p>
+                <a
+                  href="#"
+                  class="text-[#1E1E1E] font-medium hover:underline inline-flex items-center"
+                >
+                  Learn More <span class="ml-2">→</span>
+                </a>
+              </div>
+
+              <!-- Card 5: Inventory -->
+              <div
+                class="min-w-[calc(33.333%-1rem)] bg-[#E6E6FA] p-6 rounded-lg shadow-md border-2 border-black"
+                id="card5"
+              >
+                <img
+                  src="dist/img/inventory.jpeg"
+                  alt="Inventory System"
+                  class="w-full h-40 object-cover rounded-md mb-2"
+                />
+                <h3 class="text-xl font-semibold mb-2">Inventory</h3>
+                <p class="text-black mb-4">
+                  Kelola stok barang dengan mudah dan efisien untuk
+                  mengoptimalkan persediaan bisnis Anda
+                </p>
+                <a
+                  href="#"
+                  class="text-[#1E1E1E] font-medium hover:underline inline-flex items-center"
+                >
+                  Learn More <span class="ml-2">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next/Previous Buttons -->
+          <button
+            class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
+            onclick="showPrevious()"
+            id="prevButton"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          <button
+            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
+            onclick="showNext()"
+            id="nextButton"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4 -->
+    <section class="border-b-2 border-t-2 border-black mt-8">
+      <div class="layout_custom">
+        <section class="business-section">
+          <!-- Text Content -->
+          <div class="business-content">
+            <h2 class="text-5xl font-bold mb-6 w-3/4">
+              Melayani semua jenis usaha
+            </h2>
+
+            <ul class="business-list">
+              <li>
+                <a href="#" class="business-link">
+                  Kedai Kopi
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="business-link">
+                  Restoran
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="business-link">
+                  Retail
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="business-link">
+                  Salon & Barbershop
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Image Section -->
+          <div class="business-image-container">
+            <img
+              src="dist/img/solusibisnis.png.png"
+              alt="Kasirku Image"
+              class="w-f rounded-md"
+            />
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Step 5 -->
+    <section>
+      <section class="layout_custom py-8">
+        <h2 class="text-3xl font-bold mb-10 text-left">What Our Clients Say</h2>
+        <div class="grid gap-8 grid-cols-3">
+          <!-- Testimonial Card 1 -->
+          <div
+            class="bg-[#FDE3CA] p-8 rounded-lg shadow-md border-2 border-black text-left min-h-[300px] flex flex-col justify-between"
+          >
+            <div class="mb-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-pink-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <p class="text-xl text-black mb-6 font-semibold leading-relaxed">
+              "Kasirku sangat mudah digunakan dan dapat membantu usaha bisnis
+              Saya lebih terorganisir."
+            </p>
+            <div class="flex items-center text-left">
+              <!-- Profile-->
+              <img
+                src="dist/img/profil.jpg"
+                alt="Mark Lee"
+                class="w-16 h-16 rounded-full mr-4"
+              />
+              <div>
+                <!-- Text profile -->
+                <h3 class="text-lg font-semibold">Mark Lee</h3>
+                <hr class="border-t-2 border-gray-300" />
+                <p class="text-md text-black">Owner of RBM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial Card 2 -->
+          <div
+            class="bg-[#FDE3CA] p-8 rounded-lg shadow-black border-2 border-black text-left min-h-[300px] flex flex-col justify-between"
+          >
+            <div class="mb-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-pink-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <p class="text-xl text-black mb-6 font-semibold leading-relaxed">
+              "Kasirku membantu Saya dalam pengelolaan sistem pembayaran usaha
+              bisnis saya."
+            </p>
+            <div class="flex items-center text-left">
+              <!-- Profile -->
+              <img
+                src="dist/img/profil.jpg"
+                alt="Leehan Kim"
+                class="w-16 h-16 rounded-full mr-4"
+              />
+              <div>
+                <!-- Text profile -->
+                <h3 class="text-lg font-semibold">Leehan Kim</h3>
+                <hr class="border-t-2 border-gray-300" />
+                <p class="text-md text-black">Owner of Candystars</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial Card 3 -->
+          <div
+            class="bg-[#FDE3CA] p-8 rounded-lg shadow-md border-2 border-black text-left min-h-[300px] flex flex-col justify-between"
+          >
+            <div class="mb-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-pink-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <p class="text-xl text-black mb-6 font-semibold leading-relaxed">
+              "Aplikasi Kasirku sangat nyaman dan fleksibel, banyak fitur yang
+              sangat membantu usaha bisnis Saya."
+            </p>
+            <div class="flex items-center text-left">
+              <!-- Profile -->
+              <img
+                src="dist/img/profil.jpg"
+                alt="Wonbin Kim"
+                class="w-16 h-16 rounded-full mr-4"
+              />
+              <div>
+                <!-- Text profile -->
+                <h3 class="text-lg font-semibold">Wonbin Kim</h3>
+                <hr class="border-t-2 border-gray-300" />
+                <p class="text-md text-black">Owner of Star</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Step 6: Demo Section -->
+    <section class="border_buffer_y bg-custom-mint">
+      <div class="layout_custom">
+        <div class="flex items-center justify-between py-16 gap-8">
+          <!-- Text Content -->
+          <div class="flex flex-col w-1/2 space-y-6">
+            <h2 class="text-4xl font-bold text-black leading-tight">
+              Cari tahu bagaimana Kasirku bisa membantu usaha Anda
+            </h2>
+            <button class="btn-primary w-fit">Jadwalkan Demo</button>
+          </div>
+
+          <!-- Image Content -->
+          <div class="relative w-1/2 flex justify-center">
+            <img
+              src="dist/img/step6.png"
+              alt="Kasirku Demo Image"
+              class="w-auto h-[400px] object-contain"
+            />
+            <img
+              src="dist/img/Star.png"
+              alt="Star Decoration"
+              class="absolute -top-4 -right-4 h-12 w-12 animate-pulse"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7 -->
+    <div class="border-black bg-white">
+      <div class="layout_custom">
+        <section class="flex items-center gap-3 bg-white rounded-lg">
+          <div class="border-l-2 border-r-2 border-black">
+            <img
+              src="dist/img/step7.png"
+              alt="step7"
+              class="bg-[#DEE8F2] py-24 px-8"
+            />
+          </div>
+
+          <!-- Text Section -->
+          <div class="flex flex-col justify-center w-full lg:w-1/2">
+            <h2 class="text-3xl font-bold mb-4">
+              Pertanyaan? Kami selalu online
+            </h2>
+            <p class="text-lg text-black font-semibold mb-6">
+              Kami dapat membantu Anda untuk mengenal kami lebih baik dengan
+              menyediakan langkah-langkah menggunakan Kasirku.
+            </p>
+            <button
+              class="w-fit bg-black text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-200 border-2 border-black"
+            >
+              Tanya Apapun &rarr;
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="border_buffer_y">
+      <div class="faq-section">
+        <div class="faq-container">
+          <h2 class="section-title text-center">FAQ</h2>
+
+          <div class="space-y-2">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <button class="faq-button">
+                <span>Apa itu Point Of Sale (POS) Kasirku?</span>
+                <span class="faq-icon text-xl">▼</span>
+              </button>
+              <div class="faq-content">
+                Point of Sale (POS) Kasirku adalah sistem kasir modern yang
+                membantu pengelolaan bisnis Anda.
+              </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <button class="faq-button">
+                <span
+                  >Bagaimana cara menggunakan aplikasi kasir/POS dari
+                  Kasirku?</span
+                >
+                <span class="faq-icon text-xl">▼</span>
+              </button>
+              <div class="faq-content">
+                Aplikasi kasir Kasirku dirancang dengan antarmuka yang mudah
+                digunakan.
+              </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <button class="faq-button">
+                <span>Berapa biaya berlangganan Kasirku POS?</span>
+                <span class="faq-icon text-xl">▼</span>
+              </button>
+              <div class="faq-content">
+                Kami menawarkan berbagai paket berlangganan yang dapat
+                disesuaikan dengan kebutuhan bisnis Anda.
+              </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+              <button class="faq-button">
+                <span>Bagaimana cara mendaftar Kasirku POS?</span>
+                <span class="faq-icon text-xl">▼</span>
+              </button>
+              <div class="faq-content">
+                Proses pendaftaran Kasirku POS sangat mudah dan cepat.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add vanilla JavaScript for FAQ functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const faqButtons = document.querySelectorAll('.faq-button');
+
+        faqButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            // Get the content and icon elements
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+
+            // Toggle active classes
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+
+            // Close other FAQ items
+            faqButtons.forEach((otherButton) => {
+              if (otherButton !== button) {
+                const otherContent = otherButton.nextElementSibling;
+                const otherIcon = otherButton.querySelector('.faq-icon');
+                otherContent.classList.remove('active');
+                otherIcon.classList.remove('active');
+              }
+            });
+          });
+        });
+      });
+    </script>
+
+    <!-- Final Section -->
+    <div class="bg-white">
+      <div class="layout_custom">
+        <div
+          class="flex items-center gap-8 bg-white rounded-lg flex-row-reverse"
+        >
+          <!-- Image Section -->
+          <div class="border_buffer_x">
+            <img
+              src="dist/img/step9.png"
+              alt="Kasirku Business Management"
+              class="bg-custom-blue w-full hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+
+          <!-- Content Section -->
+          <div class="flex flex-col justify-center space-y-6 w-full lg:w-1/2">
+            <h2 class="text-3xl font-bold leading-tight">
+              Dapatkan pengalaman extra dalam pengelolaan bisnis Anda*
+            </h2>
+            <p class="text-lg text-gray-700">
+              Kami dapat membantu Anda untuk mengenal kami lebih baik dengan
+              menyediakan langkah-langkah menggunakan Kasirku.
+            </p>
+            <button
+              class="btn-primary w-fit hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+            >
+              Tanya Apapun
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="border-l-2 border-r-2 border-t-2 border-black bg-[#D6ECD2]">
+      <div class="layout_custom">
+        <footer class="border-t-2 border-gray-300 text-gray-900 py-10 px-4">
+          <div
+            class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8"
+          >
+            <!-- Logo -->
+            <div>
+              <h2 class="font-bold text-lg">KASIRKU</h2>
+              <ul class="mt-4 space-y-2">
+                <li>Point of Sale</li>
+                <li>Payment</li>
+                <li>Order</li>
+              </ul>
+            </div>
+
+            <!-- Business Solutions -->
+            <div>
+              <h3 class="font-bold text-lg">Solusi Bisnis</h3>
+              <ul class="mt-4 space-y-2">
+                <li>Kedai Kopi</li>
+                <li>Restoran</li>
+                <li>Retail</li>
+                <li>Salon & Barbershop</li>
+              </ul>
+            </div>
+
+            <!-- Company-->
+            <div>
+              <h3 class="font-bold text-lg">Perusahaan</h3>
+              <ul class="mt-4 space-y-2">
+                <li>Informasi Perusahaan</li>
+                <li>Support</li>
+                <li>Karir</li>
+                <li>Hubungi Kami</li>
+              </ul>
+            </div>
+
+            <!-- Icons -->
+            <div>
+              <h3 class="font-bold text-lg mb-4">Get it on:</h3>
+              <div class="flex space-x-4 mb-8">
+                <a href="#" class="inline-block">
+                  <img
+                    src="dist/img/googleplay.png"
+                    alt="Google Play"
+                    class="w-8 h-8"
+                  />
+                </a>
+                <a href="#" class="inline-block">
+                  <img
+                    src="dist/img/apple.png"
+                    alt="App Store"
+                    class="w-8 h-8"
+                  />
+                </a>
+              </div>
+              <div class="flex flex-col space-y-2">
+                <a href="#" class="font-bold">Harga</a>
+                <a href="#" class="font-bold">FAQ</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Links -->
+          <div
+            class="max-w-6xl mx-auto mt-10 border-t border-gray-300 pt-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600"
+          >
+            <div class="flex space-x-4">
+              <a href="#">Kebijakan Privasi</a>
+              <a href="#">Syarat dan Ketentuan</a>
+              <a href="#">Pengaturan Cookie</a>
+            </div>
+            <p class="mt-4 sm:mt-0">
+              Copyright 2024 PT Kasirku Point of Sale Indonesia. All Rights
+              Reserved.
+            </p>
+
+            <!-- Social Media Icons -->
+            <div class="flex space-x-4 mt-4 sm:mt-0">
+              <a href="#" class="inline-block">
+                <img src="dist/img/x.png" alt="Twitter" class="w-6 h-6" />
+              </a>
+              <a href="#" class="inline-block">
+                <img
+                  src="dist/img/instagram.png"
+                  alt="Instagram"
+                  class="w-6 h-6"
+                />
+              </a>
+              <a href="#" class="inline-block">
+                <img src="dist/img/in.png" alt="LinkedIn" class="w-6 h-6" />
+              </a>
+              <a href="#" class="inline-block">
+                <img src="dist/img/yt.png" alt="YouTube" class="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script>
+      const container = document.getElementById('carousel-container');
+      let currentPosition = 0;
+      const slideAmount = 33.333; // Percentage to slide (100% / 3)
+
+      function showNext() {
+        if (currentPosition > -66.666) {
+          // Don't slide past the last set of cards
+          currentPosition -= slideAmount;
+          container.style.transform = `translateX(${currentPosition}%)`;
+        }
+      }
+
+      function showPrevious() {
+        if (currentPosition < 0) {
+          currentPosition += slideAmount;
+          container.style.transform = `translateX(${currentPosition}%)`;
+        }
+      }
+    </script>
+  </body>
+</html>
