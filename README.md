@@ -1,4 +1,4 @@
-<h1>Website Penyedia Jasa POIN OF SALE</h1>
+<h1>Website Penyedia Jasa POINT OF SALE</h1>
 <p>Silahkan Kembangkan/Pull/Commit Sesuai Kebutuhan</p>
 
 <h2>Konsep</h2>
